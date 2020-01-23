@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import CoreData
 class MapViewController: UIViewController,CLLocationManagerDelegate, MKMapViewDelegate {
-
+    
     @IBOutlet weak var mapView: MKMapView!
     let locationManager = CLLocationManager()
     var dataManager : NSManagedObjectContext!
@@ -33,85 +33,84 @@ class MapViewController: UIViewController,CLLocationManagerDelegate, MKMapViewDe
         fetchData();
     }
     func fetchData() {
-                 let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes");
-                            do {
-                                let result = try dataManager.fetch(request);
-                                print(result.count)
-                                    listArray = result as! [NSManagedObject]
-                                    print(listArray.count)
-                                    for item in listArray {
-                                        let noteModel = Note();
-                                        
-                                        noteModel.title = item.value(forKey: "title") as! String
-                                        noteModel.noteText = item.value(forKey: "text") as! String
-                                    noteModel.latitude = item.value(forKey: "latitude") as! Double
-                                    noteModel.longitude = item.value(forKey: "longitude") as! Double
-                                    items.append(noteModel)
-                                }
-                            } catch {
-                           print(error)
-                            }
-            
-            for (index, i) in items.enumerated() {
-            
-    
-                    print(index)
-                    print(i.latitude)
-                    print(i.longitude)
-                    let location = CLLocation(latitude: i.latitude, longitude: i.longitude)
-                    let myAnnotation = MKPointAnnotation()
-                    myAnnotation.coordinate = location.coordinate
-                    myAnnotation.title = " \(i.title) "
-                    annonationCollection.append(myAnnotation);
-                    self.mapView.addAnnotation(myAnnotation)
-    
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes");
+        do {
+            let result = try dataManager.fetch(request);
+            print(result.count)
+            listArray = result as! [NSManagedObject]
+            print(listArray.count)
+            for item in listArray {
+                let noteModel = Note();
+                
+                noteModel.title = item.value(forKey: "title") as! String
+                noteModel.noteText = item.value(forKey: "text") as! String
+                noteModel.latitude = item.value(forKey: "latitude") as! Double
+                noteModel.longitude = item.value(forKey: "longitude") as! Double
+                items.append(noteModel)
             }
+        } catch {
+            print(error)
         }
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-  
-           let identifier = "marker"
-           var view: MKMarkerAnnotationView
         
-           if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-             as? MKMarkerAnnotationView {
-
+        for (index, i) in items.enumerated() {
+            
+            
+            print(index)
+            print(i.latitude)
+            print(i.longitude)
+            let location = CLLocation(latitude: i.latitude, longitude: i.longitude)
+            let myAnnotation = MKPointAnnotation()
+            myAnnotation.coordinate = location.coordinate
+            myAnnotation.title = " \(i.title) "
+            annonationCollection.append(myAnnotation);
+            self.mapView.addAnnotation(myAnnotation)
+            
+        }
+    }
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView
+        
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKMarkerAnnotationView {
+            
             dequeuedView.annotation = annonationCollection as! MKAnnotation;
-             view = dequeuedView
-           } else {
-           
-             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-             view.canShowCallout = true
-             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-           }
-           return view
-         }
+            view = dequeuedView
+        } else {
+            
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        return view
+    }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         guard let annotation = view.annotation , let title = annotation.title else {
             return
         }
-     for (index, i) in items.enumerated() {
-              let location = CLLocation(latitude: i.latitude, longitude: i.longitude)
-              let geocoder = CLGeocoder()
-                      
-
-                         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-                           if error != nil {
-              
-                           }
-                           if let place = placemarks {
-                               var placemark: CLPlacemark
-                            placemark = place.first!
-                             DispatchQueue.main.async {
-               
-                                let alertController = UIAlertController(title: " \(i.title) was created at \(placemark.locality!)", message: " You were at \(placemark.subLocality!)", preferredStyle: .alert)
-                              let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                              alertController.addAction(cancelAction)
-                              self.present(alertController, animated: true, completion: nil)
-                              }
-                                                   }
-                     }
-              
-      }
+        for (index, i) in items.enumerated() {
+            let location = CLLocation(latitude: i.latitude, longitude: i.longitude)
+            let geocoder = CLGeocoder()
+            
+            geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+                if error != nil {
+                    
+                }
+                if let place = placemarks {
+                    var placemark: CLPlacemark
+                    placemark = place.first!
+                    DispatchQueue.main.async {
+                        
+                        let alertController = UIAlertController(title: " \(i.title) was created at \(placemark.locality!)", message: " You were at \(placemark.subLocality!)", preferredStyle: .alert)
+                        let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                        alertController.addAction(cancelAction)
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                }
+            }
+            
+        }
     }
 }

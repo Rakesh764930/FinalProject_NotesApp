@@ -11,7 +11,7 @@ extension Date
 {
     func formatDate() -> String
     {
-     
+        
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MMM-dd, yyyy   HH:mm:ss"
         

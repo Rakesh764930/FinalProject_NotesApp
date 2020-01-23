@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 class ViewNotesViewController:  UIViewController {
-
+    
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblCity: UILabel!
     
@@ -28,27 +28,27 @@ class ViewNotesViewController:  UIViewController {
         //let d = getDate()
         lblCreationDate.text = "Created on :   \(items[0].creationDate.formatDate())"  
         let location = CLLocation(latitude: items[0].latitude, longitude: items[0].longitude)
-
-                let geocoder = CLGeocoder()
-                var placemark: CLPlacemark?
-
-                geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-                  if error != nil {
-     
-                  }
-                  if let placemarks = placemarks {
-                    placemark = placemarks.first
-                    DispatchQueue.main.async {
-        //              self.locationTF.text = (placemark?.locality!)
-                        self.lblCity.text = " City: \(placemark!.locality!)"
-
-                    }
+        
+        let geocoder = CLGeocoder()
+        var placemark: CLPlacemark?
+        
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if error != nil {
+                
+            }
+            if let placemarks = placemarks {
+                placemark = placemarks.first
+                DispatchQueue.main.async {
+                    //              self.locationTF.text = (placemark?.locality!)
+                    self.lblCity.text = " City: \(placemark!.locality!)"
+                    
                 }
             }
+        }
     }
-
-
     
-
+    
+    
+    
 }
 

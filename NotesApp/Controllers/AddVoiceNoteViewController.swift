@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 
 class AddVoiceNoteViewController: UIViewController {
-   var audioRecorder:AVAudioRecorder!
+    var audioRecorder:AVAudioRecorder!
     @IBOutlet weak var recordingTimeLabel: UILabel!
     @IBOutlet weak var btnRecord: UIButton!
     @IBOutlet weak var btnPlay: UIButton!
@@ -23,8 +23,8 @@ class AddVoiceNoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         check_record_permission()
-
-}
+        
+    }
     func check_record_permission()
     {
         switch AVAudioSession.sharedInstance().recordPermission {
@@ -36,11 +36,11 @@ class AddVoiceNoteViewController: UIViewController {
             break
         case AVAudioSessionRecordPermission.undetermined:
             AVAudioSession.sharedInstance().requestRecordPermission({ (allowed) in
-                    if allowed {
-                        self.isAudioRecordingGranted = true
-                    } else {
-                        self.isAudioRecordingGranted = false
-                    }
+                if allowed {
+                    self.isAudioRecordingGranted = true
+                } else {
+                    self.isAudioRecordingGranted = false
+                }
             })
             break
         default:
@@ -54,7 +54,7 @@ class AddVoiceNoteViewController: UIViewController {
             let session = AVAudioSession.sharedInstance()
             do
             {
-               
+                
                 try session.setCategory(AVAudioSession.Category.playback, options: AVAudioSession.CategoryOptions.mixWithOthers)
                 try session.setActive(true)
                 let settings = [
@@ -78,14 +78,14 @@ class AddVoiceNoteViewController: UIViewController {
         }
     }
     
-  
+    
     func display_alert(msg_title : String , msg_desc : String ,action_title : String)
     {
         let ac = UIAlertController(title: msg_title, message: msg_desc, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: action_title, style: .default)
         {
             (result : UIAlertAction) -> Void in
-        _ = self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         })
         present(ac, animated: true)
     }
@@ -95,12 +95,12 @@ class AddVoiceNoteViewController: UIViewController {
         let documentsDirectory = paths[0]
         return documentsDirectory
     }
-
+    
     func getFileUrl() -> URL
     {
         let filename = "myRecording.m4a"
         let filePath = getDocumentsDirectory().appendingPathComponent(filename)
-    return filePath
+        return filePath
     }
     
     @IBAction func btnActionRecord(_ sender: Any)
@@ -115,11 +115,11 @@ class AddVoiceNoteViewController: UIViewController {
         else
         {
             setup_recorder()
-
+            
             audioRecorder.record()
             meterTimer = Timer.scheduledTimer(timeInterval: 0.1, target:self, selector:#selector(self.updateAudioMeter(timer:)), userInfo:nil, repeats:true)
-           btnRecord.setTitle("Stop", for: .normal)
-           btnPlay?.isEnabled = false
+            btnRecord.setTitle("Stop", for: .normal)
+            btnPlay?.isEnabled = false
             isRecording = true
         }
     }
@@ -135,7 +135,7 @@ class AddVoiceNoteViewController: UIViewController {
             audioRecorder.updateMeters()
         }
     }
-
+    
     func finishAudioRecording(success: Bool)
     {
         if success
@@ -152,7 +152,7 @@ class AddVoiceNoteViewController: UIViewController {
     }
     
     @IBAction func btnActionPlay(_ sender: Any) {
-
+        
         if(isPlaying)
         {
             audioPlayer.stop()

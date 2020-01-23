@@ -33,25 +33,25 @@ class AddNotesViewController: UIViewController,UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var btnSelectCategory: UIButton!
     
-
     
     
     
-   
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-            dataManager = appDelegate.persistentContainer.viewContext;
-            categoryPickerData = ["General", "Work", "School", "Miscellenous", "Sports", "Others"]
-            self.categoryPicker.delegate = self
-            self.categoryPicker.dataSource = self
-
-            categoryPicker.isHidden = true;
-
-            txtCategory.text = "\(categoryPickerData[5])"
-            txtCategory.isUserInteractionEnabled = false
-
-            noteDate = getDate()
+        dataManager = appDelegate.persistentContainer.viewContext;
+        categoryPickerData = ["General", "Work", "School", "Miscellenous", "Sports", "Others"]
+        self.categoryPicker.delegate = self
+        self.categoryPicker.dataSource = self
+        
+        categoryPicker.isHidden = true;
+        
+        txtCategory.text = "\(categoryPickerData[5])"
+        txtCategory.isUserInteractionEnabled = false
+        
+        noteDate = getDate()
         //noteDate = Date()
         if (CLLocationManager.locationServicesEnabled())
         {
@@ -64,46 +64,46 @@ class AddNotesViewController: UIViewController,UIPickerViewDelegate, UIPickerVie
         }
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-        {
-
-            let location = locations.last! as CLLocation
-
-            /* you can use these values*/
-            lat = location.coordinate.latitude
-            long = location.coordinate.longitude
-            print("\(lat) \n \(long)")
-    //        print(self.lat as Any);
-    //        print(self.long as Any);
-    //        print(timestamp as Any);
-            let geocoder = CLGeocoder()
-            var placemark: CLPlacemark?
-
-            geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-              if error != nil {
-    //            print("something went horribly wrong")
-              }
-              if let placemarks = placemarks {
+    {
+        
+        let location = locations.last! as CLLocation
+        
+        /* you can use these values*/
+        lat = location.coordinate.latitude
+        long = location.coordinate.longitude
+        print("\(lat) \n \(long)")
+        //        print(self.lat as Any);
+        //        print(self.long as Any);
+        //        print(timestamp as Any);
+        let geocoder = CLGeocoder()
+        var placemark: CLPlacemark?
+        
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            if error != nil {
+                //            print("something went horribly wrong")
+            }
+            if let placemarks = placemarks {
                 placemark = placemarks.first
                 DispatchQueue.main.async {
-    //              self.locationTF.text = (placemark?.locality!)
+                    //              self.locationTF.text = (placemark?.locality!)
                     //self.locationTF.text = ""
-
+                    
                 }
             }
         }
-        }
+    }
     @IBAction func btnSelectCategory(_ sender: Any) {
         self.categoryPicker.isHidden = false
     }
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-           return 1
-       }
-       
-       func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-           return categoryPickerData.count
-       }
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return categoryPickerData.count
+    }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return categoryPickerData[row]
     }
@@ -117,7 +117,7 @@ class AddNotesViewController: UIViewController,UIPickerViewDelegate, UIPickerVie
         textString = txtAdd.text
         txtTitle = edtTitle.text!
         txtnoteCategory = txtCategory.text!
-       
+        
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Notes", in: context)
         let newEntity = NSManagedObject(entity: entity!, insertInto: context)
@@ -125,15 +125,15 @@ class AddNotesViewController: UIViewController,UIPickerViewDelegate, UIPickerVie
         {
             if(textString != "")
             {
-                 newEntity.setValue(txtTitle, forKey: "title")
-                 newEntity.setValue(textString, forKey: "text")
+                newEntity.setValue(txtTitle, forKey: "title")
+                newEntity.setValue(textString, forKey: "text")
                 newEntity.setValue(txtnoteCategory, forKey: "category")
                 if !(imageData.isEmpty){
                     newEntity.setValue(imageData, forKey: "picture")
                 }else{
                     newEntity.setValue(nil, forKey: "picture")
                 }
-            
+                
                 newEntity.setValue(noteDate, forKey: "creationDate")
                 newEntity.setValue(lat, forKey: "latitude")
                 newEntity.setValue(long, forKey: "longitude")
@@ -149,15 +149,15 @@ class AddNotesViewController: UIViewController,UIPickerViewDelegate, UIPickerVie
             showAlert(alertCase: 1)
             
         }
-       
-            
-               do {
-                   try context.save()
-                   print("saved")
-                self.navigationController?.popViewController(animated: true)
-               } catch  {
-           print("Failed")
-               }
+        
+        
+        do {
+            try context.save()
+            print("saved")
+            self.navigationController?.popViewController(animated: true)
+        } catch  {
+            print("Failed")
+        }
         
     }
     func showAlert(alertCase : Int) {
@@ -175,75 +175,75 @@ class AddNotesViewController: UIViewController,UIPickerViewDelegate, UIPickerVie
             alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
-          
-      }
-//    func getData()
-//    {
-//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes")
-//        request.returnsObjectsAsFaults = false
-//        do {
-//            let result = try context.fetch(request)
-//            for data in result as! [NSManagedObject]
-//            {
-//                textString = data.value(forKey: "text") as! String
-//                txtTitle = data.value(forKey: "title") as! String
-//                txtnoteCategory = data.value(forKey: "category") as! String
-//                //(score)
-//            }
-//        } catch  {
-//            print("Failed")
-//        }
-//    }
+        
+    }
+    //    func getData()
+    //    {
+    //        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    //        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Notes")
+    //        request.returnsObjectsAsFaults = false
+    //        do {
+    //            let result = try context.fetch(request)
+    //            for data in result as! [NSManagedObject]
+    //            {
+    //                textString = data.value(forKey: "text") as! String
+    //                txtTitle = data.value(forKey: "title") as! String
+    //                txtnoteCategory = data.value(forKey: "category") as! String
+    //                //(score)
+    //            }
+    //        } catch  {
+    //            print("Failed")
+    //        }
+    //    }
     @IBAction func btnChooseImage(_ sender: Any) {
-    let alert = UIAlertController(title: "NoteIt!", message: "Pick image from", preferredStyle: .alert)
+        let alert = UIAlertController(title: "NoteIt!", message: "Pick image from", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { action in
-          if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                    var imagePicker = UIImagePickerController()
-                    imagePicker.delegate = self
-                    imagePicker.sourceType = .camera;
-                    imagePicker.allowsEditing = false
-                    self.present(imagePicker, animated: true, completion: nil)
-                }
-    }))
-    alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { action in
-                    if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                    var imagePicker = UIImagePickerController()
-                    imagePicker.delegate = self
-                    imagePicker.sourceType = .photoLibrary;
-                    imagePicker.allowsEditing = true
-                    self.present(imagePicker, animated: true, completion: nil)
-              }
-          
-    }))
-    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    self.present(alert, animated: true)
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                var imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .camera;
+                imagePicker.allowsEditing = false
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { action in
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                var imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.sourceType = .photoLibrary;
+                imagePicker.allowsEditing = true
+                self.present(imagePicker, animated: true, completion: nil)
+            }
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
     }
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-           if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-               self.imageView.isHidden =  false
-               self.imageView.image = image
-              // self.RemovePhotoBTN.isHidden =  false
-               self.btnAddImage.isHidden =  true
-               imageData = image.pngData()!
-           }
-           self.dismiss(animated: true, completion: nil)
-       }
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.imageView.isHidden =  false
+            self.imageView.image = image
+            // self.RemovePhotoBTN.isHidden =  false
+            self.btnAddImage.isHidden =  true
+            imageData = image.pngData()!
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
     func getDate() -> Date{
         let date = Date();
-           
         
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
-            dateFormatter.locale = NSLocale.current
-            dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss" //Specify your format that you want
         
-            let strDate = dateFormatter.string(from: date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss" //Specify your format that you want
+        
+        let strDate = dateFormatter.string(from: date)
         let d = dateFormatter.date(from: strDate)
         return d!
     }
     
-    } // end of class
-    
-    
+} // end of class
+
+
 
