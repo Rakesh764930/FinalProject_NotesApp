@@ -40,13 +40,13 @@ class MapViewController: UIViewController,CLLocationManagerDelegate, MKMapViewDe
                                     listArray = result as! [NSManagedObject]
                                     print(listArray.count)
                                     for item in listArray {
-                                        let noteModal = Note();
+                                        let noteModel = Note();
                                         
-                                        noteModal.title = item.value(forKey: "title") as! String
-                                        noteModal.noteText = item.value(forKey: "text") as! String
-                                    noteModal.latitude = item.value(forKey: "latitude") as! Double
-                                    noteModal.longitude = item.value(forKey: "longitude") as! Double
-                                    items.append(noteModal)
+                                        noteModel.title = item.value(forKey: "title") as! String
+                                        noteModel.noteText = item.value(forKey: "text") as! String
+                                    noteModel.latitude = item.value(forKey: "latitude") as! Double
+                                    noteModel.longitude = item.value(forKey: "longitude") as! Double
+                                    items.append(noteModel)
                                 }
                             } catch {
                            print(error)
@@ -85,5 +85,33 @@ class MapViewController: UIViewController,CLLocationManagerDelegate, MKMapViewDe
            }
            return view
          }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        guard let annotation = view.annotation , let title = annotation.title else {
+            return
+        }
+        for (index, i) in items.enumerated() {
+            let location = CLLocation(latitude: i.latitude, longitude: i.longitude)
+            let geocoder = CLGeocoder()
+                       var placemark: CLPlacemark?
 
+                       geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+                         if error != nil {
+            
+                         }
+                         if let placemarks = placemarks {
+                           placemark = placemarks.first
+                           DispatchQueue.main.async {
+               //              self.locationTF.text = (placemark?.locality!)
+                               //self.lblCity.text = " City: \(placemark!.locality!)"
+                            let alertController = UIAlertController(title: "This note was created by \(i.title) at\(placemark?.locality)", message: "Have a good time in \(placemark?.locality)", preferredStyle: .alert)
+                            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                            alertController.addAction(cancelAction)
+                            self.present(alertController, animated: true, completion: nil)
+                            }
+                                                 }
+                   }
+            
+    }
+    }
 }
