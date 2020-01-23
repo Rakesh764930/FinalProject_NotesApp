@@ -15,11 +15,11 @@
 		704957E723CFA82C00373F77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 704957E623CFA82C00373F77 /* Assets.xcassets */; };
 		704957EA23CFA82C00373F77 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 704957E823CFA82C00373F77 /* LaunchScreen.storyboard */; };
 		704957F423CFAB7A00373F77 /* AddNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704957F323CFAB7A00373F77 /* AddNotesViewController.swift */; };
-		704957F723CFBBE200373F77 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704957F623CFBBE200373F77 /* Note.swift */; };
 		704957FB23CFC3D500373F77 /* NotesCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704957FA23CFC3D500373F77 /* NotesCellTableViewCell.swift */; };
 		704957FD23D2408300373F77 /* ViewNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704957FC23D2408300373F77 /* ViewNotesViewController.swift */; };
 		7049580123D6936200373F77 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7049580023D6936200373F77 /* MapViewController.swift */; };
 		9B48B57C23D682A6001AF6D9 /* AddVoiceNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48B57B23D682A6001AF6D9 /* AddVoiceNoteViewController.swift */; };
+		9B7EF53323DA10F000C0D2DA /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704957F623CFBBE200373F77 /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B7EF53323DA10F000C0D2DA /* Note.swift in Sources */,
 				704957DF23CFA82B00373F77 /* ViewController.swift in Sources */,
 				704957F423CFAB7A00373F77 /* AddNotesViewController.swift in Sources */,
 				704957FB23CFC3D500373F77 /* NotesCellTableViewCell.swift in Sources */,
@@ -176,7 +177,6 @@
 				704957DB23CFA82B00373F77 /* AppDelegate.swift in Sources */,
 				704957DD23CFA82B00373F77 /* SceneDelegate.swift in Sources */,
 				704957E523CFA82B00373F77 /* NotesApp.xcdatamodeld in Sources */,
-				704957F723CFBBE200373F77 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
