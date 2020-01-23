@@ -93,17 +93,18 @@ class MapViewController: UIViewController,CLLocationManagerDelegate, MKMapViewDe
      for (index, i) in items.enumerated() {
               let location = CLLocation(latitude: i.latitude, longitude: i.longitude)
               let geocoder = CLGeocoder()
-                         var placemark: CLPlacemark?
+                      
 
                          geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
                            if error != nil {
               
                            }
-                           if let placemarks = placemarks {
-                             placemark = placemarks.first
+                           if let place = placemarks {
+                               var placemark: CLPlacemark
+                            placemark = place.first!
                              DispatchQueue.main.async {
                
-                              let alertController = UIAlertController(title: "This note was created by \(i.title) at\(placemark?.locality)", message: " You are in \(placemark?.locality)", preferredStyle: .alert)
+                                let alertController = UIAlertController(title: " \(i.title) was created at \(placemark.locality!)", message: " You were at \(placemark.subLocality!)", preferredStyle: .alert)
                               let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                               alertController.addAction(cancelAction)
                               self.present(alertController, animated: true, completion: nil)
