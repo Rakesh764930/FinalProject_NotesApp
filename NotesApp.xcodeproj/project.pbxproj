@@ -70,30 +70,38 @@
 		704957D923CFA82B00373F77 /* NotesApp */ = {
 			isa = PBXGroup;
 			children = (
-				704957F523CFBBB900373F77 /* Utilities */,
+				9B7EF53523DA19CC00C0D2DA /* Controllers */,
+				704957F523CFBBB900373F77 /* Models */,
 				704957DA23CFA82B00373F77 /* AppDelegate.swift */,
 				704957DC23CFA82B00373F77 /* SceneDelegate.swift */,
-				704957DE23CFA82B00373F77 /* ViewController.swift */,
 				704957E023CFA82B00373F77 /* Main.storyboard */,
 				704957E623CFA82C00373F77 /* Assets.xcassets */,
 				704957E823CFA82C00373F77 /* LaunchScreen.storyboard */,
 				704957EB23CFA82C00373F77 /* Info.plist */,
-				704957E323CFA82B00373F77 /* NotesApp.xcdatamodeld */,
-				704957F323CFAB7A00373F77 /* AddNotesViewController.swift */,
-				704957FA23CFC3D500373F77 /* NotesCellTableViewCell.swift */,
-				704957FC23D2408300373F77 /* ViewNotesViewController.swift */,
-				9B48B57B23D682A6001AF6D9 /* AddVoiceNoteViewController.swift */,
-				7049580023D6936200373F77 /* MapViewController.swift */,
 			);
 			path = NotesApp;
 			sourceTree = "<group>";
 		};
-		704957F523CFBBB900373F77 /* Utilities */ = {
+		704957F523CFBBB900373F77 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				704957F623CFBBE200373F77 /* Note.swift */,
+				704957FA23CFC3D500373F77 /* NotesCellTableViewCell.swift */,
+				704957E323CFA82B00373F77 /* NotesApp.xcdatamodeld */,
 			);
-			path = Utilities;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9B7EF53523DA19CC00C0D2DA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				704957DE23CFA82B00373F77 /* ViewController.swift */,
+				704957F323CFAB7A00373F77 /* AddNotesViewController.swift */,
+				704957FC23D2408300373F77 /* ViewNotesViewController.swift */,
+				9B48B57B23D682A6001AF6D9 /* AddVoiceNoteViewController.swift */,
+				7049580023D6936200373F77 /* MapViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
