@@ -10,7 +10,8 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-    //asfewfffg+-*
+
+    // variables declaration
     var dataManager : NSManagedObjectContext!
     var listArray = [NSManagedObject]()
     var items: [Note] = []
@@ -22,25 +23,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         case bydate
         case bytitle
     }
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var sortingSegment: UISegmentedControl!
-    @IBOutlet weak var allNotesTV: UITableView!
+    @IBOutlet weak var notesTableView: UITableView!
     override func viewDidLoad() {
            super.viewDidLoad()
-           self.allNotesTV.delegate = self;
-           self.allNotesTV.dataSource = self;
+           self.notesTableView.delegate = self;
+           self.notesTableView.dataSource = self;
            self.searchBar.delegate = self;
-           let   appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        
+        // creating app delegate reference
+           let appDelegate = UIApplication.shared.delegate as! AppDelegate;
               dataManager = appDelegate.persistentContainer.viewContext;
           
        }
+                                                         
        override func viewWillAppear(_ animated: Bool) {
            items = []
            searchArray = []
            sortedArray = []
            self.fetchData()
-           self.allNotesTV.reloadData()
+           self.notesTableView.reloadData()
        }
   
     @IBAction func actionSortingSegment(_ sender: UISegmentedControl) {
@@ -79,7 +84,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         {
             issearch = false
         }
-        self.allNotesTV.reloadData();
+        self.notesTableView.reloadData();
     }
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool
     {
@@ -157,7 +162,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         case .bytitle:
             items.sort { $0.title.compare($1.title as String) == .orderedAscending }
         }
-    allNotesTV.reloadData()
+    notesTableView.reloadData()
     }
         
     
