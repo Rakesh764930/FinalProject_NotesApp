@@ -189,7 +189,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             noteData.title = item.value(forKey: "title") as! String
                             noteData.noteCategory = item.value(forKey: "category") as! String
                             if let imageData = item.value(forKey: "picture") as? Data{
-                               noteData.imageData = imageData
+                                if imageData == nil {
+                                    
+                                } else{
+                                    noteData.imageData = imageData}
                             }
                             noteData.creationDate = item.value(forKey: "creationDate") as! Date
                             noteData.longitude = item.value(forKey: "longitude") as! Double

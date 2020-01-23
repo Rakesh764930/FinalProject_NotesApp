@@ -130,7 +130,10 @@ class AddNotesViewController: UIViewController,UIPickerViewDelegate, UIPickerVie
                 newEntity.setValue(txtnoteCategory, forKey: "category")
                 if !(imageData.isEmpty){
                     newEntity.setValue(imageData, forKey: "picture")
+                }else{
+                    newEntity.setValue(nil, forKey: "picture")
                 }
+            
                 newEntity.setValue(noteDate, forKey: "creationDate")
                 newEntity.setValue(lat, forKey: "latitude")
                 newEntity.setValue(long, forKey: "longitude")
