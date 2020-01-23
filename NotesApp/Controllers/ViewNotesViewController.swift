@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreLocation
-class ViewNotesViewController: UIViewController {
+class ViewNotesViewController:  UIViewController {
 
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblCity: UILabel!
