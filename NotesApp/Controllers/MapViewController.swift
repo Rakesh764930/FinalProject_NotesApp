@@ -30,8 +30,6 @@ class MapViewController: UIViewController,CLLocationManagerDelegate, MKMapViewDe
         mapView.delegate = self
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         dataManager = appDelegate.persistentContainer.viewContext;
-        
-         
         fetchData();
     }
     func fetchData() {
@@ -51,12 +49,12 @@ class MapViewController: UIViewController,CLLocationManagerDelegate, MKMapViewDe
                                     items.append(noteModal)
                                 }
                             } catch {
-    //                            print("Failed")
+                           print(error)
                             }
             
             for (index, i) in items.enumerated() {
             
-    //            if (index == items.count-1){
+    
                     print(index)
                     print(i.latitude)
                     print(i.longitude)
@@ -66,8 +64,7 @@ class MapViewController: UIViewController,CLLocationManagerDelegate, MKMapViewDe
                     myAnnotation.title = " \(i.title) "
                     annonationCollection.append(myAnnotation);
                     self.mapView.addAnnotation(myAnnotation)
-    //                mapView.showAnnotations(mapView.annotations, animated: true)
-    //            }
+    
             }
         }
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {

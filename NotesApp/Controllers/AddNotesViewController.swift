@@ -42,13 +42,13 @@ class AddNotesViewController: UIViewController,UIPickerViewDelegate, UIPickerVie
         super.viewDidLoad()
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
             dataManager = appDelegate.persistentContainer.viewContext;
-            categoryPickerData = ["Work", "Home", "School", "Michelenous", "Sports", "Others", "None"]
+            categoryPickerData = ["General", "Work", "School", "Miscellenous", "Sports", "Others"]
             self.categoryPicker.delegate = self
             self.categoryPicker.dataSource = self
 
             categoryPicker.isHidden = true;
 
-            txtCategory.text = "\(categoryPickerData[6])"
+            txtCategory.text = "\(categoryPickerData[5])"
             txtCategory.isUserInteractionEnabled = false
 
             noteDate = getDate()

@@ -86,7 +86,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Notes" id="Tzf-W7-mJC">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="pencil" catalog="system" id="7cL-Fv-RrU">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="7cL-Fv-RrU">
                             <connections>
                                 <segue destination="Kpr-nm-Pyg" kind="show" id="948-yo-SYO"/>
                             </connections>
@@ -291,7 +291,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Note" id="pt8-Fg-qrG">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="hXw-Ue-p8t"/>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="k4c-jR-PZ2">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="k4c-jR-PZ2">
                             <connections>
                                 <action selector="btnAdd:" destination="Kpr-nm-Pyg" id="LOP-XV-lBn"/>
                             </connections>
@@ -414,7 +414,7 @@
     </scenes>
     <resources>
         <image name="map.fill" catalog="system" width="64" height="56"/>
-        <image name="pencil" catalog="system" width="64" height="56"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aJN-hz-4az"/>

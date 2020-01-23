@@ -26,7 +26,7 @@ class ViewNotesViewController:  UIViewController {
         lblDescription.text = " \(items[0].noteText)"
         notesImage.image = UIImage(data:items[0].imageData)
         //let d = getDate()
-        lblCreationDate.text = "Created on :   \(items[0].creationDate.formatDate())"  //needs to format date
+        lblCreationDate.text = "Created on :   \(items[0].creationDate.formatDate())"  
         let location = CLLocation(latitude: items[0].latitude, longitude: items[0].longitude)
 
                 let geocoder = CLGeocoder()
@@ -34,7 +34,7 @@ class ViewNotesViewController:  UIViewController {
 
                 geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
                   if error != nil {
-        //            print("something went horribly wrong")
+     
                   }
                   if let placemarks = placemarks {
                     placemark = placemarks.first
@@ -46,16 +46,7 @@ class ViewNotesViewController:  UIViewController {
                 }
             }
     }
-//    func getDate() -> Date{
-//            let date = items[0].creationDate;
-//            let dateFormatter = DateFormatter()
-//            //dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
-//            dateFormatter.locale = NSLocale.current
-//            dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss" //Specify your format that you want
-//            let strDate = dateFormatter.string(from: date)
-//            let d = dateFormatter.date(from: strDate)
-//            return d!
-//    }
+
 
     
 
