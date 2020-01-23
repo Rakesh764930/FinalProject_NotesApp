@@ -7,3 +7,20 @@
 //
 
 import Foundation
+extension Date
+{
+    func formatDate() -> String
+    {
+     
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM-dd, yyyy   HH:mm:ss"
+        
+        return dateFormatterPrint.string(from: self)
+    }
+    func formatShortDate() -> String{
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM-dd, yyyy"
+        
+        return dateFormatterPrint.string(from: self)
+    }
+}

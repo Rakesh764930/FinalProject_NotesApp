@@ -51,7 +51,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
   
     @IBAction func actionSortingSegment(_ sender: UISegmentedControl) {
         let getIndex = sortingSegment.selectedSegmentIndex
-        let byTitle = items.sorted(by: { $0.title.uppercased() > ($1.title.uppercased()) })
+        let byTitle = items.sorted(by: { $0.title.uppercased() < ($1.title.uppercased()) })
+        
+        for i in byTitle {
+            print(i.title)
+            
+        }
         let byDate = items.sorted(by: { $0.creationDate > ($1.creationDate) })
         switch getIndex {
         case 0:
