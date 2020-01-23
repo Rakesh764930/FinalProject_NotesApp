@@ -39,7 +39,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
               dataManager = appDelegate.persistentContainer.viewContext;
           
        }
-                                                         
+                        
+    // adding view Will Appear
        override func viewWillAppear(_ animated: Bool) {
            items = []
            searchArray = []
