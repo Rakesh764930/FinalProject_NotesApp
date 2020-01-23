@@ -90,28 +90,27 @@ class MapViewController: UIViewController,CLLocationManagerDelegate, MKMapViewDe
         guard let annotation = view.annotation , let title = annotation.title else {
             return
         }
-        for (index, i) in items.enumerated() {
-            let location = CLLocation(latitude: i.latitude, longitude: i.longitude)
-            let geocoder = CLGeocoder()
-                       var placemark: CLPlacemark?
+     for (index, i) in items.enumerated() {
+              let location = CLLocation(latitude: i.latitude, longitude: i.longitude)
+              let geocoder = CLGeocoder()
+                         var placemark: CLPlacemark?
 
-                       geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
-                         if error != nil {
-            
-                         }
-                         if let placemarks = placemarks {
-                           placemark = placemarks.first
-                           DispatchQueue.main.async {
-               //              self.locationTF.text = (placemark?.locality!)
-                               //self.lblCity.text = " City: \(placemark!.locality!)"
-                            let alertController = UIAlertController(title: "This note was created by \(i.title) at\(placemark?.locality)", message: "Have a good time in \(placemark?.locality)", preferredStyle: .alert)
-                            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                            alertController.addAction(cancelAction)
-                            self.present(alertController, animated: true, completion: nil)
-                            }
-                                                 }
-                   }
-            
-    }
+                         geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+                           if error != nil {
+              
+                           }
+                           if let placemarks = placemarks {
+                             placemark = placemarks.first
+                             DispatchQueue.main.async {
+               
+                              let alertController = UIAlertController(title: "This note was created by \(i.title) at\(placemark?.locality)", message: " You are in \(placemark?.locality)", preferredStyle: .alert)
+                              let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                              alertController.addAction(cancelAction)
+                              self.present(alertController, animated: true, completion: nil)
+                              }
+                                                   }
+                     }
+              
+      }
     }
 }
