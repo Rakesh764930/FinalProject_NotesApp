@@ -21,8 +21,9 @@ class ViewNotesViewController:  UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblTitle.text = "Title: \(items[0].title)"
-        lblCategory.text = "Category: \(items[0].noteCategory)"
+        lblTitle.text = "\(items[0].title)"
+        
+        lblCategory.text = "Category    : \(items[0].noteCategory)"
         lblDescription.text = " \(items[0].noteText)"
         notesImage.image = UIImage(data:items[0].imageData)
         //let d = getDate()
@@ -40,7 +41,7 @@ class ViewNotesViewController:  UIViewController {
                 placemark = placemarks.first
                 DispatchQueue.main.async {
                     //              self.locationTF.text = (placemark?.locality!)
-                    self.lblCity.text = " City: \(placemark!.locality!)"
+                    self.lblCity.text = "City: \(placemark!.locality!)"
                     
                 }
             }
