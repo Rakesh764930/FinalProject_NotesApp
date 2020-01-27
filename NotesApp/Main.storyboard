@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7TO-68-I9d">
-                                <rect key="frame" x="8" y="96" width="398" height="758"/>
+                                <rect key="frame" x="8" y="96" width="398" height="705"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" placeholder="search here" id="ZXU-KL-1jy">
                                     <rect key="frame" x="0.0" y="0.0" width="398" height="44"/>
@@ -77,17 +77,18 @@
                                         <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </barButtonItem>
                                 </items>
+                                <color key="barTintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" red="0.66624044940000005" green="0.82211382769999997" blue="0.65253922919999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="7TO-68-I9d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="54Q-Bl-Rco"/>
-                            <constraint firstItem="mrF-jh-GDK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6ol-DR-A3l"/>
-                            <constraint firstItem="mrF-jh-GDK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="CHX-1q-HP0"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7TO-68-I9d" secondAttribute="bottom" constant="8" id="TFo-tA-QkP"/>
-                            <constraint firstItem="7TO-68-I9d" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="Uzi-rn-S7G"/>
-                            <constraint firstItem="mrF-jh-GDK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="713" id="ajg-oF-vLF"/>
-                            <constraint firstItem="mrF-jh-GDK" firstAttribute="centerX" secondItem="7TO-68-I9d" secondAttribute="centerX" id="m2m-sn-SfX"/>
+                            <constraint firstItem="mrF-jh-GDK" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="THT-Bz-oAS"/>
+                            <constraint firstItem="7TO-68-I9d" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="U7U-NF-LLP"/>
+                            <constraint firstItem="mrF-jh-GDK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XWD-pi-mBa"/>
+                            <constraint firstItem="7TO-68-I9d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="YCv-Pl-dgL"/>
+                            <constraint firstItem="mrF-jh-GDK" firstAttribute="top" secondItem="7TO-68-I9d" secondAttribute="bottom" symbolic="YES" id="Z4M-VG-LIa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7TO-68-I9d" secondAttribute="trailing" constant="8" id="jG2-ry-7Rb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="mrF-jh-GDK" secondAttribute="bottom" constant="17" id="vBU-pH-2Ai"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -465,7 +466,6 @@
         <!--Navigation Controller-->
         <scene sceneID="FcS-sh-hCL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ujv-Vm-GQe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8iz-AK-1aS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="h6n-Tb-q6a">
@@ -477,6 +477,7 @@
                         <segue destination="563-d5-slq" kind="relationship" relationship="rootViewController" id="A08-Di-kJK"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ujv-Vm-GQe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="138" y="769"/>
         </scene>

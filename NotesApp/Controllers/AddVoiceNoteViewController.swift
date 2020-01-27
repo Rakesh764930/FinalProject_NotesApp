@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import AVFoundation
 
 class AddVoiceNoteViewController: UIViewController {
     var audioRecorder:AVAudioRecorder!
@@ -155,6 +156,7 @@ class AddVoiceNoteViewController: UIViewController {
         
         if(isPlaying)
         {
+            prepare_play()
             audioPlayer.stop()
             btnRecord.isEnabled = true
             btnPlay?.setTitle("Play", for: .normal)
